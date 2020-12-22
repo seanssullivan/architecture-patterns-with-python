@@ -1,8 +1,13 @@
-# test_allocate.py
+# tests/unit/test_allocate.py
 
+# Standard Imports
 import datetime
+
+# Third-Party Imports
 import pytest
-from model import Batch, OrderLine, allocate, OutOfStock
+
+# Local Imports
+from domain.model import Batch, OrderLine, allocate, OutOfStock
 
 
 today = datetime.date.today()

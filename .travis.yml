@@ -7,3 +7,7 @@ install:
 
 script:
   - make all
+
+branches:
+except:
+  - /.*_exercise$/
