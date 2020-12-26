@@ -1,5 +1,4 @@
 # tests/e2e/test_api.py
-# pylint: disable=redefined-outer-name
 
 # Standard Imports
 import uuid

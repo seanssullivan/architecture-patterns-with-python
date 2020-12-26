@@ -27,10 +27,10 @@ class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):
 
     def __init__(self):
         self.batches = FakeRepository([])
-        self.commited = False
+        self.committed = False
 
     def commit(self):
-        self.commited = True
+        self.committed = True
 
     def rollback(self):
         pass

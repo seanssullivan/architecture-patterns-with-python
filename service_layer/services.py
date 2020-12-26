@@ -40,3 +40,23 @@ def allocate(
         batchref = model.allocate(line, batches)
         uow.commit()
         return batchref
+
+
+def reallocate(line: OrderLine, uow: unit_of_work.AbstractUnitOfWork) -> str:
+    with uow:
+        batch = uow.batches.get(sku=line.sku)
+        if batch is None:
+            raise InvalidSku(f'Invalid sku {line.sku}')
+        batch.deallocate(line)
+        allocate(line)
+        uow.commit()
+
+
+# def change_batch_quantity(batchref: str, new_qty: int, uow: unit_of_work.AbstractUnitOfWork):
+#     with uow:
+#         batch = uow.batches.get(reference=batchref)
+#         batch.change_purchased_quantity(new_qty)
+#         while batch.available_quantity < 0:
+#             line = batch.deallocate_one()
+#             allocate(line)
+#         uow.commit()

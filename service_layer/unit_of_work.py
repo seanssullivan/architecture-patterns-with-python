@@ -1,6 +1,7 @@
 # unit_of_work.py
 
 # Standard Imports
+from __future__ import annotations
 import abc
 
 # Third-Party Imports
@@ -15,6 +16,9 @@ import config
 
 class AbstractUnitOfWork(abc.ABC):
     batches: repository.AbstractRepository
+
+    def __enter__(self) -> AbstractUnitOfWork:
+        return self
 
     def __exit__(self, *args):
         self.rollback()
